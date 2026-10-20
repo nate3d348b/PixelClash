@@ -12,7 +12,15 @@
     "health": 110,
     "power": 1.03,
     "special": "fire",
-    "projectile": "#ff9c30"
+    "projectile": "#ff9c30",
+    "sprite": {
+      "sheet": "assets/fighters.png",
+      "row": 0,
+      "frameWidth": 48,
+      "frameHeight": 64,
+      "columns": 8,
+      "scale": 2
+    }
   },
   {
     "id": "volt",
@@ -27,7 +35,15 @@
     "health": 95,
     "power": 0.96,
     "special": "bolt",
-    "projectile": "#75f1ff"
+    "projectile": "#75f1ff",
+    "sprite": {
+      "sheet": "assets/fighters.png",
+      "row": 4,
+      "frameWidth": 48,
+      "frameHeight": 64,
+      "columns": 8,
+      "scale": 2
+    }
   },
   {
     "id": "onyx",
@@ -42,6 +58,14 @@
     "health": 130,
     "power": 1.15,
     "special": "shadow",
-    "projectile": "#c28cff"
+    "projectile": "#c28cff",
+    "sprite": {
+      "sheet": "assets/fighters.png",
+      "row": 8,
+      "frameWidth": 48,
+      "frameHeight": 64,
+      "columns": 8,
+      "scale": 2
+    }
   }
 ]
