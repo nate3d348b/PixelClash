@@ -14,7 +14,7 @@
     "special": "fire",
     "projectile": "#ff9c30",
     "sprite": {
-      "sheet": "assets/fighters.png",
+      "sheet": "assets/characters/ember/sprites.png",
       "row": 0,
       "frameWidth": 48,
       "frameHeight": 64,
@@ -37,8 +37,8 @@
     "special": "bolt",
     "projectile": "#75f1ff",
     "sprite": {
-      "sheet": "assets/fighters.png",
-      "row": 4,
+      "sheet": "assets/characters/volt/sprites.png",
+      "row": 0,
       "frameWidth": 48,
       "frameHeight": 64,
       "columns": 8,
@@ -60,8 +60,8 @@
     "special": "shadow",
     "projectile": "#c28cff",
     "sprite": {
-      "sheet": "assets/fighters.png",
-      "row": 8,
+      "sheet": "assets/characters/onyx/sprites.png",
+      "row": 0,
       "frameWidth": 48,
       "frameHeight": 64,
       "columns": 8,

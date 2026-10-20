@@ -1,26 +1,70 @@
 # ⚡ Pixel Clash v0.3: Sprite Edition
 
-A Streamlit-hosted, browser-rendered fighting game with **96 original pixel-art animation frames** (32 frames per fighter). Frames cover idle, walk, jump, punch, kick, special, block, hurt, and KO.
+A Streamlit-hosted pixel-art fighting game. **The actual character sprite sheets are committed to GitHub**, so you can preview and edit them without running the generator.
 
-## Deploy
-On [Streamlit Community Cloud](https://share.streamlit.io/), choose repo `nate3d348b/PixelClash`, branch `main`, entrypoint `app.py`.
+## 🎨 Browse the real character sprites
 
-## Controls
-**A/D** walk, **W** jump, **S** block, **J** punch, **K** kick, **L** special. Touch buttons are available; matches are best of three against CPU.
+Each PNG contains **32 hand-designed frames** (8 columns × 4 rows; individual frames are 48 × 64 pixels).
 
-## Art pipeline
-- `generate_sprites.py` contains the original hand-designed pixel-art frames. It generates an indexed **PNG** atlas, 384 × 768 pixels, with eight 48 × 64 frames per row.
-- `app.py` generates the starter atlas **in memory** using Pillow and embeds it in the Streamlit iframe. No external image hosting or asset server.
-- `characters.json` links characters to `sprite.sheet`, atlas row, frame dimensions, columns, and scale.
-- Animation slots: idle 0–3; walk 4–9; jump 10–11; punch 12–15; kick 16–19; special 20–23; hurt 24–25; block 26–27; KO 28–31.
-- For future artist-made characters, add their actual `.png` sprite sheet in `assets/characters/` and point `sprite.sheet` to it with `sprite.row: 0`. The loader automatically embeds it.
-- Optional: run `python generate_sprites.py` locally to save `assets/fighters.png` for inspection.
-- Fighters without sprite art retain the legacy rectangle renderer as a fallback.
+- [Ember](assets/characters/ember/sprites.png)
+- [Volt](assets/characters/volt/sprites.png)
+- [Onyx](assets/characters/onyx/sprites.png)
 
-## Local development
+All three are original placeholder-quality pixel-art fighters intended to be refined. They animate in real time, including idle, walk, jump, punches, kicks, special attacks, hurt, blocking, and KO.
+
+### Folder structure
+
+```text
+PixelClash/
+├── app.py
+├── game.js
+├── game.html
+├── game.css
+├── characters.json
+├── generate_sprites.py
+├── requirements.txt
+└── assets/
+    └── characters/
+        ├── ember/sprites.png
+        ├── volt/sprites.png
+        └── onyx/sprites.png
+```
+
+### Animation layout
+
+| Animation | Frames (0-based) |
+|---|---|
+| Idle | 0–3 |
+| Walk | 4–9 |
+| Jump | 10–11 |
+| Punch | 12–15 |
+| Kick | 16–19 |
+| Special | 20–23 |
+| Hurt | 24–25 |
+| Block | 26–27 |
+| KO | 28–31 |
+
+Frame indexes run left to right, top to bottom in each PNG.
+
+### How sprites load
+
+`characters.json` lists each fighter's own `sprite.sheet` file, `row: 0`, frame size, columns, and scaling. `app.py` reads those PNGs **from the repository** and embeds the image data into the Streamlit game iframe. No external image server is needed. A generated fallback remains for older rosters that reference `assets/fighters.png`.
+
+To add a character with custom art, add `assets/characters/new_fighter/sprites.png` and update `characters.json`. The current renderer expects 48 × 64 pixel frames in the above order (8 columns; 4 rows). In a future update we can support more flexible per-character animation maps.
+
+**Regenerating starter art:** Install dependencies, then run `python generate_sprites.py`. This recreates the individual tracked PNGs and a combined `assets/fighters.png` preview locally. Editing a generated PNG by hand is fine, but running the generator again will overwrite it.
+
+## Play and deploy
+
+[Streamlit Community Cloud](https://share.streamlit.io/): choose GitHub repo `nate3d348b/PixelClash`, branch `main`, and entrypoint `app.py`.
+
+Locally:
+
 ```bash
 pip install -r requirements.txt
 streamlit run app.py
 ```
 
-All included sprite designs are original prototype assets. This is not yet an arcade-quality fighting engine, and online multiplayer is not included.
+Controls: **A/D** walk, **W** jump, **S** block, **J** punch, **K** kick, **L** special. Mobile touch buttons are provided. Best-of-three rounds against a CPU opponent.
+
+This is an original hobby-game prototype, not a finished arcade game. Online multiplayer is not implemented.
